@@ -96,7 +96,6 @@ class _AllShipmentsScreenState extends State<AllShipmentsScreen> {
               itemCount: shipments.length,
               showItemInterval: const Duration(milliseconds: 100),
               showItemDuration: const Duration(milliseconds: 350),
-              reAnimateOnVisibility: true,
               itemBuilder: (_, index, animation) {
                 return FadeTransition(
                   opacity: Tween<double>(
