@@ -1,3 +1,4 @@
+import 'package:auto_animated/auto_animated.dart';
 import 'package:flutter/material.dart';
 import 'package:interview_test_app/src/features/home/widgets/freight_type_widget.dart';
 import 'package:interview_test_app/src/features/home/widgets/profile_details_widget.dart';
@@ -13,6 +14,33 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final controller = PageController();
   final deepBlueColor = const Color(0xff001a33);
+
+  final widgetList = [
+    const FreightTypeWidget(
+      title: 'Ocean freight',
+      subtitle: 'International',
+      image: 'assets/images/ship3.png',
+      top: 100,
+      right: -100,
+      bottom: 10,
+    ),
+    const FreightTypeWidget(
+      title: 'Cargo freight',
+      subtitle: 'Reliable',
+      image: 'assets/images/delivery_truck.png',
+      top: 30,
+      right: -100,
+      bottom: 10,
+    ),
+    const FreightTypeWidget(
+      title: 'Air freight',
+      subtitle: 'International',
+      image: 'assets/images/airplane.png',
+      top: 70,
+      right: -60,
+      bottom: 0,
+    ),
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -158,45 +186,27 @@ class _HomeScreenState extends State<HomeScreen> {
               child: SizedBox(
                 height: 220,
                 width: double.infinity,
-                child: ListView.builder(
+                child: LiveList(
                   scrollDirection: Axis.horizontal,
                   controller: controller,
-                  itemCount: 1,
-                  itemBuilder: (_, index) {
-                    return const Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        FreightTypeWidget(
-                          title: 'Ocean freight',
-                          subtitle: 'International',
-                          image: 'assets/images/ship3.png',
-                          top: 100,
-                          right: -100,
-                          bottom: 10,
-                        ),
-                        SizedBox(
-                          width: 15,
-                        ),
-                        FreightTypeWidget(
-                          title: 'Cargo freight',
-                          subtitle: 'Reliable',
-                          image: 'assets/images/delivery_truck.png',
-                          top: 30,
-                          right: -100,
-                          bottom: 10,
-                        ),
-                        SizedBox(
-                          width: 15,
-                        ),
-                        FreightTypeWidget(
-                          title: 'Air freight',
-                          subtitle: 'International',
-                          image: 'assets/images/airplane.png',
-                          top: 70,
-                          right: -60,
-                          bottom: 0,
-                        ),
-                      ],
+                  itemCount: 3,
+                  reAnimateOnVisibility: true,
+                  separatorBuilder: (_, index) => const SizedBox(
+                    width: 14,
+                  ),
+                  itemBuilder: (_, index, animation) {
+                    return FadeTransition(
+                      opacity: Tween<double>(
+                        begin: 0,
+                        end: 1,
+                      ).animate(animation),
+                      child: SlideTransition(
+                        position: Tween<Offset>(
+                          begin: Offset.zero,
+                          end:  const Offset(-0.1, 0),
+                        ).animate(animation),
+                        child: widgetList[index],
+                      ),
                     );
                   },
                 ),

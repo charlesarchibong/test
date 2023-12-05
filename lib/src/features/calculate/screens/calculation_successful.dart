@@ -1,3 +1,6 @@
+import 'dart:async';
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:interview_test_app/src/constants/bottom_nav_bar.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
@@ -10,6 +13,29 @@ class CalculationSuccessful extends StatefulWidget {
 }
 
 class _CalculationSuccessfulState extends State<CalculationSuccessful> {
+  int currentNumber = 20;
+  final random = Random();
+  int shuffleCount = 0;
+
+  void _startRandomNumberGeneration() {
+    Timer.periodic(const Duration(milliseconds: 50), (timer) {
+      int randomNumber = random.nextInt(1441) + 20;
+      setState(() {
+        currentNumber = randomNumber;
+      });
+      if (currentNumber == 1460 || shuffleCount == 7) {
+        timer.cancel();
+      }
+      shuffleCount++;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _startRandomNumberGeneration();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,11 +85,14 @@ class _CalculationSuccessfulState extends State<CalculationSuccessful> {
           const SizedBox(
             height: 10,
           ),
-          const Text(
-            r'$1460 USD',
-            style: TextStyle(
-              color: Colors.green,
-              fontSize: 25,
+           AnimatedSwitcher(
+            duration: const Duration(milliseconds: 500),
+            child:  Text(
+              '\$$currentNumber USD',
+              style:const TextStyle(
+                color: Colors.green,
+                fontSize: 25,
+              ),
             ),
           ),
           const SizedBox(

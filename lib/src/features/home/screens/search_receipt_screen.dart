@@ -1,3 +1,4 @@
+import 'package:auto_animated/auto_animated.dart';
 import 'package:flutter/material.dart';
 import 'package:interview_test_app/src/features/home/widgets/receipt_number_widget.dart';
 import 'package:interview_test_app/src/features/home/widgets/search_receipt_appbar.dart';
@@ -13,31 +14,31 @@ class _SearchReceiptScreenState extends State<SearchReceiptScreen> {
   List<ReceiptNumberClass> receiptNumbers = const [
     ReceiptNumberClass(
       productName: 'Macbook pro M2',
-      receiptNumber: '#NE43857340857904',
+      receiptNumber: '#NE4385734085',
       leavingLocation: 'Paris',
       arrivalLocation: 'Morocco',
     ),
     ReceiptNumberClass(
       productName: 'Summer Linen Jacket',
-      receiptNumber: '#NEJ20089934122231',
+      receiptNumber: '#NE4385734085',
       leavingLocation: 'Barcelona',
       arrivalLocation: 'Paris',
     ),
     ReceiptNumberClass(
       productName: 'Tapered-fit jeans AW',
-      receiptNumber: '#NEJ35870264978659',
+      receiptNumber: '#NE4385734085',
       leavingLocation: 'Colombia',
       arrivalLocation: 'Morocco',
     ),
     ReceiptNumberClass(
       productName: 'Slim fit jeans AW',
-      receiptNumber: '#NEJ35870264978659',
+      receiptNumber: '#NE4385734085',
       leavingLocation: 'Bogota',
       arrivalLocation: 'Dhaka',
     ),
     ReceiptNumberClass(
       productName: 'Office Setup Desk',
-      receiptNumber: '#NEJ23481570754963',
+      receiptNumber: '#NE4385734085',
       leavingLocation: 'France',
       arrivalLocation: 'German',
     ),
@@ -48,7 +49,10 @@ class _SearchReceiptScreenState extends State<SearchReceiptScreen> {
     return Scaffold(
       appBar: const PreferredSize(
         preferredSize: Size.fromHeight(150),
-        child: SearchReceiptAppBar(),
+        child: Hero(
+          tag: 'searchReceipt',
+          child: SearchReceiptAppBar(),
+        ),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -69,24 +73,40 @@ class _SearchReceiptScreenState extends State<SearchReceiptScreen> {
                   ],
                 ),
                 child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 14.0,
-                      vertical: 20,
-                    ),
-                    child: ListView.separated(
-                        itemCount: receiptNumbers.length,
-                        separatorBuilder: (BuildContext context, int index) =>
-                            const Divider(),
-                        itemBuilder: (BuildContext context, int index) {
-                          return ReceiptNumberWidget(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 14.0,
+                    vertical: 20,
+                  ),
+                  child: LiveList(
+                    itemCount: receiptNumbers.length,
+                    showItemInterval: const Duration(milliseconds: 100),
+                    showItemDuration: const Duration(milliseconds: 350),
+                    separatorBuilder: (BuildContext context, int index) =>
+                        const Divider(),
+                    itemBuilder: (_, index, animation) {
+                      return FadeTransition(
+                        opacity: Tween<double>(
+                          begin: 0,
+                          end: 1,
+                        ).animate(animation),
+                        child: SlideTransition(
+                          position: Tween<Offset>(
+                            begin: const Offset(0, -0.1),
+                            end: Offset.zero,
+                          ).animate(animation),
+                          child: ReceiptNumberWidget(
                             productName: receiptNumbers[index].productName,
                             receiptNumber: receiptNumbers[index].receiptNumber,
                             leavingLocation:
                                 receiptNumbers[index].leavingLocation,
                             arrivalLocation:
                                 receiptNumbers[index].arrivalLocation,
-                          );
-                        })),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
               )
             ],
           ),

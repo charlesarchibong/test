@@ -106,50 +106,56 @@ class _ProfileDetailsWidgetState extends State<ProfileDetailsWidget> {
                     pageTransitionAnimation: PageTransitionAnimation.cupertino,
                   );
                 },
-                child: Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50.0),
-                      color: Colors.white),
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.only(right: 8.0, top: 8, bottom: 8),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Padding(
-                          padding: EdgeInsets.only(left: 16.0),
-                          child: Row(
-                            children: [
-                              Icon(
-                                Icons.search,
-                                color: Colors.deepPurple,
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Text(
-                                'Enter the receipt number ...',
-                                style: TextStyle(
-                                    color: Colors.black45,
-                                    fontWeight: FontWeight.w500),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.orange,
-                          ),
-                          child: const Padding(
-                            padding: EdgeInsets.all(10.0),
-                            child: Icon(
-                              Icons.splitscreen_rounded,
-                              color: Colors.white,
+                child: Hero(
+                  tag: 'searchReceipt',
+                  child: Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50.0),
+                        color: Colors.white),
+                    child: Padding(
+                      padding:
+                          const EdgeInsets.only(right: 8.0, top: 8, bottom: 8),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Padding(
+                            padding: EdgeInsets.only(left: 16.0),
+                            child: Row(
+                              children: [
+                                Icon(
+                                  Icons.search,
+                                  color: Colors.deepPurple,
+                                ),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                Material(
+                                  child: Text(
+                                    'Enter the receipt number ...',
+                                    style: TextStyle(
+                                      color: Colors.black45,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
-                        ),
-                      ],
+                          Container(
+                            decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.orange,
+                            ),
+                            child: const Padding(
+                              padding: EdgeInsets.all(10.0),
+                              child: Icon(
+                                Icons.splitscreen_rounded,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),

@@ -50,7 +50,7 @@ class FreightTypeWidget extends StatelessWidget {
                       title,
                       style: const TextStyle(
                         color: deepBlueColor,
-                        fontSize: 19,
+                        fontSize: 17,
                       ),
                     ),
                     const SizedBox(
