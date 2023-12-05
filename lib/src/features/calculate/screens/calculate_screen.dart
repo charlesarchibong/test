@@ -324,36 +324,22 @@ class _CalculateScreenState extends State<CalculateScreen> {
               const SizedBox(
                 height: 10,
               ),
-              const Row(
+              const Wrap(
+                spacing: 10,
+                runSpacing: 10,
                 children: [
                   CategoryWidget(
                     category: 'Documents',
                   ),
-                  SizedBox(
-                    width: 10,
-                  ),
                   CategoryWidget(
                     category: 'Glass',
-                  ),
-                  SizedBox(
-                    width: 10,
                   ),
                   CategoryWidget(
                     category: 'Liquid',
                   ),
-                  SizedBox(
-                    width: 10,
-                  ),
                   CategoryWidget(
                     category: 'Food',
                   ),
-                ],
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              const Row(
-                children: [
                   CategoryWidget(
                     category: 'Electronic',
                   ),
