@@ -130,16 +130,4 @@ class ReceiptNumberWidget extends StatelessWidget {
   }
 }
 
-class ReceiptNumberClass {
-  const ReceiptNumberClass({
-    required this.productName,
-    required this.receiptNumber,
-    required this.leavingLocation,
-    required this.arrivalLocation,
-  });
 
-  final String productName;
-  final String receiptNumber;
-  final String leavingLocation;
-  final String arrivalLocation;
-}

@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 
 class SearchReceiptAppBar extends StatefulWidget {
-  const SearchReceiptAppBar({Key? key}) : super(key: key);
+  final ValueChanged<String> onChanged;
+
+  const SearchReceiptAppBar({
+    Key? key,
+    required this.onChanged,
+  }) : super(key: key);
 
   @override
   State<SearchReceiptAppBar> createState() => _SearchReceiptAppBarState();
@@ -30,6 +35,7 @@ class _SearchReceiptAppBarState extends State<SearchReceiptAppBar> {
                 ),
                 Expanded(
                   child: TextFormField(
+                    onChanged: widget.onChanged,
                     cursorColor: Colors.grey,
                     style: const TextStyle(
                         fontSize: 16,
@@ -72,9 +78,10 @@ class _SearchReceiptAppBarState extends State<SearchReceiptAppBar> {
                       ),
                       hintText: 'Enter the receipt number ...',
                       hintStyle: const TextStyle(
-                          fontSize: 14,
-                          color: Colors.black45,
-                          fontWeight: FontWeight.w500),
+                        fontSize: 14,
+                        color: Colors.black45,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
                 ),
