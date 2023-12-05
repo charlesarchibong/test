@@ -92,6 +92,7 @@ class _AllShipmentsScreenState extends State<AllShipmentsScreen> {
             ),
             LiveList(
               shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
               itemCount: shipments.length,
               showItemInterval: const Duration(milliseconds: 100),
               showItemDuration: const Duration(milliseconds: 350),

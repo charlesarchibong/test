@@ -62,7 +62,7 @@ class ReceiptNumberWidget extends StatelessWidget {
 
                 children: [
                   SizedBox(
-                    width: uiHelper.getMappedWidth(128),
+                    width: uiHelper.getMappedWidth(115),
                     height: uiHelper.getMappedHeight(20),
                     child: AutoSizeText(
                       receiptNumber,
